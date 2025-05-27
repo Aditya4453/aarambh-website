@@ -54,6 +54,7 @@ body, html {
 
 
         /* Loading Screen Styles */
+        
         #loading-screen {
             position: fixed;
             top: 0;
@@ -310,6 +311,27 @@ body, html {
   /* backdrop-filter: blur(10px); */
   z-index: 999;
 }
+.navbar a {
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  transition: width 0.3s;
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
 
 /* Create a container for logos */
 .logos-container {
@@ -367,7 +389,8 @@ nav-links-container {
   padding: 0.5rem 1rem;
   
   transition: background 0.3s, color 0.3s;
-  border-radius: 8px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
 }
 
 .nav-links li a:hover {
@@ -918,8 +941,17 @@ nav-links-container {
     border-radius: 5px;
     margin: 0 0.5rem;
     font-weight: 500;
+    color: #000;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: none;
 }
-
+.tab-btn a{
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
 .tab-btn.active, .tab-btn:hover {
     background-color: #8D0B41;
     color: white;
@@ -1018,7 +1050,7 @@ nav-links-container {
 
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3 , minmax(300px, 1fr));
     gap: 2rem;
     align-items: center;
     justify-items: center;
@@ -1536,6 +1568,11 @@ nav-links-container {
   color: #333;
   padding: 100px 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
   /* font-family: 'losta masta', serif; */
 }
 
@@ -1545,7 +1582,14 @@ nav-links-container {
   margin-bottom: 20px;
   color: #8D0B41; /* Primary brand color */
 }
-
+.team-og{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px;
+}
 .team-og h2 {
   font-size: 3rem;
   /* font-family: 'Calora', sans-serif; */
@@ -1574,12 +1618,17 @@ nav-links-container {
 /* Team Category Section */
 .team-category {
   /* font-family: 'Arial', Helvetica, sans-serif; */
-  max-width: 1200px;
-  margin: 60px auto;
-  padding: 40px;
+  /* max-width: 1200px; */
+  /* margin: 60px auto; */
+  /* padding: 40px; */
   background: #F6EBDD; /* 10% tint of secondary */
   border-radius: 15px;
   box-shadow: 0 8px 32px rgba(141, 11, 65, 0.1); /* Primary color shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
 }
 
 .team-category h2 {
@@ -1595,10 +1644,12 @@ nav-links-container {
 
 /* Leader Section */
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  align-items: start;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 70vw;
+  gap: 20px;
 }
 
 .team-member.leader {
@@ -1609,6 +1660,9 @@ nav-links-container {
   color: #fff;
   box-shadow: 0 10px 25px rgba(141, 11, 65, 0.3); /* Primary color shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 500px;
+  height: 530px;
+
 }
 
 .team-member.leader:hover {
@@ -1628,9 +1682,11 @@ nav-links-container {
 
 /* Team Members Grid */
 .team-member-group {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+
 }
 
 .team-member-group .team-member {
@@ -1641,6 +1697,8 @@ nav-links-container {
   text-align: center;
   box-shadow: 0 8px 20px rgba(141, 11, 65, 0.15); /* Primary color shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 300px;
+  height: 400px;
 }
 
 .team-member-group .team-member:hover {
@@ -2538,18 +2596,7 @@ nav-links-container {
     transition-timing-function: ease-in-out;
 }
 
-.team-btn{
-  background-color: #8D0B41; /* Primary brand color */
-  padding: 15px;
-  color: #fee5da;
-  border: 1px solid #fee5da;
-  border-radius: 20px;
-}
-.team-btn a {
-  color: #fee5da;
-  text-decoration: none;
-  font-weight: bold;
-}
+
 
 /* ...existing code... */
 #car-wrapper {
@@ -2559,13 +2606,189 @@ nav-links-container {
   height: 100vh;
   width: 100px;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 99999; /* High enough to stay above all */
 }
 
 #car {
   position: absolute;
-  top: 40vh; /* START in middle vertically */
-  left: 20px;
-  width: 80px;
-  transition: top 0.5s ease-out;
+  top: 100px; /* Initial top position */
+  left: 20px;  /* Adjust left position as needed */
+  width: 80px; /* Adjust size as needed */
+  transition: top 0.3s ease;
+}
+
+.block {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.block.visible {
+  opacity: 1;
+  transform: none;
+}
+
+
+
+
+.example::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+
+
+/* Flip Card Styles for Team Members */
+.team-grid {
+  display: flex;
+
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+}
+
+.team-member.flip-card,
+.team-member.leader,
+.team-member {
+  background: transparent;
+  width: 500px;
+  height: 500px;
+  perspective: 1000px;
+  margin: 16px 8px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.flip-card-inner,
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(.4,2,.6,1);
+  transform-style: preserve-3d;
+}
+
+.team-member.flip-card:hover .flip-card-inner,
+.team-member.leader:hover .flip-inner,
+.team-member:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-front,
+.flip-card-back,
+.flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.flip-card-front,
+.flip-front {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flip-card-front img,
+.flip-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-card-back,
+.flip-back {
+  background: #fff;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(180deg);
+  padding: 24px 12px;
+  box-sizing: border-box;
+}
+
+.flip-card-back h3,
+.flip-back h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.flip-card-back .role,
+.flip-back .role {
+  font-size: 1rem;
+  color: #e67e22;
+  margin-bottom: 4px;
+}
+
+.flip-card-back .course,
+.flip-back .course {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.social-links, .contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.social-links a, .contact-info a {
+  color: #e67e22;
+  font-size: 1.3rem;
+  margin: 0 4px;
+  transition: color 0.2s;
+}
+
+.social-links a:hover, .contact-info a:hover {
+  color: #222;
+}
+
+.contact-info .phone {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .team-grid {
+    gap: 20px;
+  }
+  .team-member.flip-card,
+  .team-member.leader,
+  .team-member {
+    width: 170px;
+    height: 230px;
+  }
+  .flip-card-back,
+  .flip-back {
+    padding: 16px 6px;
+  }
+}
+
+@media (max-width: 600px) {
+  .team-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .team-member.flip-card,
+  .team-member.leader,
+  .team-member {
+    width: 90vw;
+    max-width: 320px;
+    height: 220px;
+  }
 }

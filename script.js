@@ -478,38 +478,23 @@ function updateCountdown() {
 updateCountdown();
 
 
-// ...existing code...
-
 document.addEventListener("DOMContentLoaded", () => {
-  const car = document.getElementById('car');
-  if (!car) return;
+  const sections = document.querySelectorAll(".block");
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  const sections = [
-    document.querySelector('.hero-section'),
-    document.querySelector('.about-section'),
-    document.querySelector('.Hightlights'),
-    document.querySelector('.rules-section'),
-    document.querySelector('.schedule'),
-    document.querySelector('.rolling-gallery')
-  ].filter(Boolean);
-
-  sections.forEach(section => {
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top center",
-      end: "bottom center",
-      scrub: true,
-      onUpdate: self => {
-        const sectionMiddle = section.offsetTop + section.offsetHeight / 2 - car.offsetHeight / 2;
-        gsap.to(car, {
-          top: sectionMiddle + "px",
-          duration: 0.6,
-          ease: "power2.out"
-        });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
       }
     });
+  }, {
+    threshold: 0.1
+  });
+
+  sections.forEach((section) => {
+    observer.observe(section);
   });
 });
+
+
 
