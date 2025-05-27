@@ -1,0 +1,222 @@
+.decorative-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 1px 1px, rgba(141, 11, 65, 0.1) 1px, transparent 0);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.floating-shapes .shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: float 6s infinite ease-in-out;
+}
+
+.shape-1 {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, #D39D55, #DAAD71); /* Secondary + 50% tint */
+    top: 20%;
+    left: 10%;
+}
+
+.shape-2 {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(45deg, #E2BE8E, #B0B347); /* 60% + 80% tints of secondary */
+    top: 40%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.shape-3 {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #F6EBDD, #6AAF2B); /* 10% tint secondary + 100% shade */
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+.shape-4 {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, #A03461, #B35C80); /* 50% + 40% tints of primary */
+    bottom: 10%;
+    top: 50%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.shape-5 {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(45deg, #8D0B41, #E8CED9); /* Primary + 10% tint */
+    top: 30%;
+    left: 30%;
+    animation-delay: 3s;
+}
+
+.shape-6 {
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(45deg, #F0DEC6, #E9CEAA); /* 20% + 30% tints of secondary */
+    top: 50%;
+    right: 20%;
+    animation-delay: 5s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Highlight Category With Background */
+.highlight-category.with-background {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #F6EBDD, #E8CED9); /* 10% tints of secondary and primary */
+    padding: 40px 20px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+/* Background Visuals Layer */
+.background-visuals {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Foreground Content */
+.highlight-category h3,
+.highlight-category .video-row {
+    position: relative;
+    z-index: 2;
+}
+
+/* Floating Emojis */
+.floating-emojis {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: floatEmojis 6s infinite alternate ease-in-out;
+    position: absolute;
+    top: 10%;
+    z-index: 1;
+}
+
+@keyframes floatEmojis {
+    0% { transform: translateY(10px); }
+    100% { transform: translateY(-20px); }
+}
+
+/* Circle Lines */
+.circle-lines {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0.2;
+}
+
+.circle {
+    border: 2px dashed #8D0B41; /* Primary brand color */
+    border-radius: 50%;
+    position: absolute;
+    animation: spin 20s linear infinite;
+}
+
+.circle.large {
+    width: 300px;
+    height: 300px;
+}
+
+.circle.medium {
+    width: 200px;
+    height: 200px;
+    animation-duration: 25s;
+    border-color: #D39D55; /* Secondary brand color */
+}
+
+.circle.small {
+    width: 100px;
+    height: 100px;
+    animation-duration: 30s;
+    border-color: #A03461; /* 50% tint of primary */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Character Animation */
+.character-wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    z-index: 1;
+    opacity: 0.9;
+}
+
+.earth-character {
+    height: 140px;
+    animation: floatCharacter 4s ease-in-out infinite;
+    filter: hue-rotate(320deg) saturate(1.2); /* Adjust character colors to match brand */
+}
+
+@keyframes floatCharacter {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Video Styling */
+.video-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+video {
+    width: 250px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(141, 11, 65, 0.2); /* Primary color shadow */
+    transition: transform 0.3s ease;
+    border: 2px solid #D39D55; /* Secondary brand color border */
+}
+
+video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 28px rgba(141, 11, 65, 0.3); /* Enhanced primary color shadow */
+    border-color: #8D0B41; /* Primary brand color on hover */
+}
+
+/* Brand color palette reference (updated):
+Primary: #8D0B41 (burgundy)
+Secondary: #D39D55 (golden)
+Primary 10% tint: #E8CED9
+Primary 40% tint: #B35C80
+Primary 50% tint: #A03461
+Secondary 10% tint: #F6EBDD
+Secondary 20% tint: #F0DEC6
+Secondary 30% tint: #E9CEAA
+Secondary 50% tint: #DAAD71
+Secondary 60% tint: #E2BE8E
+Secondary 80% tint: #B0B347
+Secondary 100% shade: #6AAF2B
+*/
+
